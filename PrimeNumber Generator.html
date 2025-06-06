@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<script type="text/javascript">
+    function Check(v){
+        if(v<=1){
+            return false;
+        }else{
+            for(var y=2;y<Math.sqrt(y);y++){
+                if(v%y==0){
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+    function prime(){
+        let start=document.getElementById("StartIndex").value;
+        let End=document.getElementById("EndIndex").value;
+        let prime=document.getElementById("Numbers");
+        let y;
+        let count=0;
+        let x="";
+        for(y=parseInt(start);y<=parseInt(End);y++){
+            if(Check(y)){
+                x+=y+" , ";
+                count++;
+            }
+        }
+        prime.textContent=x.slice(0,x.length-2);
+
+    }
+</script>
+<style>
+    .background{
+        height:100vh;
+        width:100vw;
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        font-family:"Roboto";
+    }
+    table{
+        border-collapse:collapse;
+        border:2px solid black;
+        width:70vw;
+    }
+
+    th,td{
+        border:1px solid black;
+        padding:10px;
+        min-width:32vw;
+    }
+    th{
+        font-size:20px;
+    }
+    .btn{
+        height:5vh;
+        font-size:20px;
+    }
+    .InputBox{
+        height:5vh;
+        font-size:20px;
+    }
+    .tableDiv{
+        border:1px solid black;
+        min-height:20vh;
+        padding:10px;
+        
+    }
+
+    
+</style>
+<body>
+
+    <div class="background">
+    <h1 style="margin-top:150px">Prime Number Generator</h1>
+    
+        <table>
+            <tr>
+                <th>Start</th>
+                <td><input type="text" class="InputBox" id="StartIndex"></td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td><input type="text" class="InputBox" id="EndIndex"></td>
+            </tr>
+            <tr>
+                <th>Prime Numbers</th>
+                <td>
+                    <div class="tableDiv" id="Numbers">
+                        
+                    </div>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button class="btn" onclick="prime()">Generate</button></td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>
