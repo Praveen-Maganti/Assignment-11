@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    .background{
+        background-color: blueviolet;
+        height:100vh;
+        width:100vw;
+        background-size:cover;
+        font-family:"Roboto";
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .heading{
+        text-align:center;
+        color:white;
+        font-size:36px;
+        padding-top:90px;
+    }
+    .DateDiv{
+        background-color:white;
+        height:10vh;
+        width:35vw;
+        border-radius:10px;
+         display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-top:20px;
+        box-shadow: 5px 5px 10px black;
+    }
+    .btn{
+        background-color: blueviolet;
+        border-radius:0px;
+        color:white;
+        height:5vh;
+        width:8vw;
+        font-size:20px;
+        cursor:pointer;
+    }
+    .btn:hover{
+        opacity:0.9;
+    }
+    #DateInput{
+        width:60%;
+        font-size:20px;
+        padding:10px;
+        text-transform:uppercase;
+
+    }
+    .OuterDiv{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        gap:15px;
+        height:50vh;
+        width:80vw;
+        gap:100px;
+    }
+    .inner{
+        background-color:white;
+        height:18vh;
+        width:9vw;
+        display:flex;
+        flex-direction:column;
+         align-items:center;
+        justify-content:center;
+        border-radius:10px;
+        box-shadow: 7px 7px 7px black;
+        gap:0px;
+    }
+    .p{
+        font-size:37px;
+        font-weight:bold;
+        margin-top:2px;
+    }
+    .h1{
+        font-size:20px;
+        margin:0px;
+    }
+</style>
+<script type="text/javascript">
+    function calculate() {
+        let dateValue = document.getElementById("DateInput").value;
+        let years = document.getElementById("year");
+        let minutes = document.getElementById("minute");
+        let days = document.getElementById("day");
+
+        if (!dateValue) {
+            alert("Please select a date.");
+            return;
+        }
+
+        const birthDate = new Date(dateValue);
+        const today = new Date();
+
+        let yearDiff = today.getFullYear() - birthDate.getFullYear();
+        let monthDiff = today.getMonth() - birthDate.getMonth();
+        let dayDiff = today.getDate() - birthDate.getDate();
+
+        if (dayDiff < 0) {
+            monthDiff--;
+            dayDiff += new Date(today.getFullYear(),today.getMonth(),0).getDate();
+        }
+
+        if (monthDiff < 0) {
+            yearDiff--;
+            monthDiff += 12;
+        }
+
+        if(yearDiff<0){
+            alert("Please select a valid date.");
+            return;
+        }
+
+       years.textContent = yearDiff < 10 ? '0' + yearDiff : yearDiff;
+       minutes.textContent = monthDiff < 10 ? '0' + monthDiff : monthDiff;
+       days.textContent = dayDiff < 10 ? '0' + dayDiff : dayDiff;
+
+    }
+
+    
+    document.getElementById("year").textContent = "00";
+    document.getElementById("minute").textContent = "00";
+    document.getElementById("day").textContent = "00";
+</script>
+
+
+</script>
+<body>
+
+    <div class="background">
+        <h1 class="heading">AGE  CALCULATOR</h1>
+        <div class="DateDiv">
+            <input type="date" id="DateInput">
+            <button class="btn" onclick="calculate()">Calculate</button>
+        </div>
+        <div class="OuterDiv d-flex flex-row justify-content-center">
+            <div class="inner">
+                <h1 class="p" id="year">00</h1>
+                <p class="h1">YEAR</p>
+            </div>
+            <div class="inner">
+                <h1 class="p" id="minute">00</h1>
+                <p class="h1">MONTH</p>
+            </div>
+            <div class="inner">
+                <h1 class="p" id="day">00</h1>
+                <p class="h1">DAY</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
