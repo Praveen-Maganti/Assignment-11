@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    .background{
+        background-color:white;
+        height:100vh;
+        width:100vw;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:30px;
+        margin-top:0px;
+        font-family:"Roboto";
+    }
+    .inner-div{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+        gap:30px;
+    }
+    .btn{
+        height:5vh;
+        width:7vw;
+        font-size:18px;
+    }
+    .h1{
+        font-weight:bold;
+        margin-top:220px;
+    }
+    .p{
+        font-size:20px;
+        opacity:0.9;
+    }
+    #PhoneNum{
+        height:3vh;
+        font-size:18px;
+    }
+    
+</style>
+<script type="text/javascript">
+
+
+    function button(){
+        let num=document.getElementById("PhoneNum");
+        let NumValue=document.getElementById("PhoneNum").value.trim();
+        let Icon=document.getElementById("tick");
+
+        if(isNaN(NumValue)){
+            Icon.textContent="❌";
+            alert("Please enter numbers ranging from (0-9)"); 
+            return;
+        }
+        else if(NumValue.charAt(0)=='0' || NumValue.charAt(0)=='1' || NumValue.charAt(0)=='2' || NumValue.charAt(0)=='3' || NumValue.charAt(0)=='4' || NumValue.charAt(0)=='5'){
+            Icon.textContent="❌";
+            alert("Phone Number doesn't start with a 0, 1, 2, 3, 4, 5.");
+            return;
+        }
+        else if(NumValue.length<10 || NumValue.length>10){
+            Icon.textContent="❌";
+            alert("Phone Number must contain 10 digits");
+            return;
+        }
+        
+            Icon.textContent="✅";
+    }
+
+</script>
+<body>
+
+    <div class="background">
+        <h1 class="h1">Mobile Number Validation using JavaScript</h1>
+        <div class="inner-div">
+            <p class="p">Enter Mobile Number</p>
+            <input type="text" placeholder="Enter 10 Digit Phone Number" id="PhoneNum">
+            <span id="tick" style="font-size:24px;"></span>
+        </div>
+        <button class="btn" onclick="button()">Validate</button>
+
+    </div>
+  
+</body>
+</html>
